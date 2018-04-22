@@ -11,3 +11,5 @@
 /bin/
 /docker/files/*.war
 /temp/
+/nogit/*
+!/nogit/.gitkeep

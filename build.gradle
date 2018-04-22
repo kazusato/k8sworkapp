@@ -10,7 +10,7 @@ buildscript {
 }
 
 group 'kazusato'
-version '1.0-SNAPSHOT'
+//version '0.1'
 
 apply plugin: 'kotlin'
 apply plugin: 'war'
@@ -37,5 +37,26 @@ task wrapper(type: Wrapper) {
 
 task buildDocker(type: Exec) {
     executable "docker"
-    args "build -t kazusato/k8sworkapp:0.1 --force-rm -f docker/Dockerfile ."
+    args "build", "-t", "kazusato/k8sworkapp:0.1", "--force-rm", "-f", "docker/Dockerfile", "."
 }
+
+task tagDocker(type: Exec) {
+    def dockerProps = loadProps('nogit/docker.properties')
+    executable "docker"
+    args "tag", "kazusato/k8sworkapp:0.1", "${dockerProps.registry}/kazusato/k8sworkapp:0.1"
+}
+
+task pushDocker(type: Exec) {
+    def dockerProps = loadProps('nogit/docker.properties')
+    executable "docker"
+    args "push", "${dockerProps.registry}/kazusato/k8sworkapp:0.1"
+}
+
+def loadProps(filename) {
+    def props = new Properties()
+    file(filename).withInputStream {
+        props.load(it)
+    }
+    return props
+}
+
