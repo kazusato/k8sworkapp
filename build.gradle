@@ -37,5 +37,5 @@ task wrapper(type: Wrapper) {
 
 task buildDocker(type: Exec) {
     executable "docker"
-    args "version"
+    args "build -t kazusato/k8sworkapp:0.1 --force-rm -f docker/Dockerfile ."
 }
