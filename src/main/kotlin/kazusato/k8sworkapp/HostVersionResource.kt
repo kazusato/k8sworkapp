@@ -12,7 +12,7 @@ class HostVersionResource {
         return String.format("%-20s %-20s %-20s",
                 "HOST_VERSION",
                 InetAddress.getLocalHost().hostName,
-                "v1")
+                "v2")
     }
 
 }

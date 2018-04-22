@@ -43,7 +43,7 @@ task buildDocker(type: Exec) {
 task tagDocker(type: Exec) {
     def dockerProps = loadProps('nogit/docker.properties')
     executable "docker"
-    args "tag", "kazusato/k8sworkapp:0.1", "${dockerProps.registry}/kazusato/k8sworkapp:0.1"
+    args "tag", "kazusato/k8sworkapp:0.1", "${dockerProps.registry}/kazusato/k8sworkapp:0.2"
 }
 
 task pushDocker(type: Exec) {
